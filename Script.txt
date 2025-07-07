@@ -1,0 +1,50 @@
+CREATE TABLE genre (
+	id_genre SERIAL PRIMARY key,
+	name VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE performers (
+	id_performers SERIAL PRIMARY key,
+	name VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE album (
+	id_album SERIAL PRIMARY key,
+	name VARCHAR(40) not null,
+	release_year VARCHAR(4) not null 
+);
+
+CREATE TABLE tracks (
+	id_track SERIAL PRIMARY key,
+	name VARCHAR(40) NOT null,
+	track_length TIME not null,
+	id_album INTEGER not null references album(id_album)
+);
+
+CREATE TABLE performers (
+	id_performers SERIAL PRIMARY key,
+	name VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE genre_performers (
+	id_performers INTEGER not null references performers(id_performers)
+	id_genre INTEGER not null references genre(id_genre)
+);
+
+CREATE TABLE albums_performers (
+	id_album INTEGER not null references album(id_album)
+	id_performers INTEGER not null references performers(id_performers)
+);
+
+CREATE TABLE albums_tracks (
+	id_album INTEGER not null references album(id_album)
+	id_tracks INTEGER not null references tracks(id_tracks)
+);
+
+CREATE TABLE collection (
+	id_collection SERIAL PRIMARY KEY,
+	name VARCHAR(60) NOT null,
+	release_year VARCHAR(4) not null,
+	id_track INTEGER not null references tracks(id_track),
+	id_album INTEGER not null references album(id_album)
+);
