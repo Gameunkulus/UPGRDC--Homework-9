@@ -36,8 +36,8 @@ CREATE TABLE albums_performers (
 	id_performers INTEGER not null references performers(id_performers)
 );
 
-CREATE TABLE albums_tracks (
-	id_album INTEGER not null references album(id_album)
+CREATE TABLE tracks_collection (
+	id_collection INTEGER not null references album(id_collection)
 	id_tracks INTEGER not null references tracks(id_tracks)
 );
 
@@ -45,6 +45,4 @@ CREATE TABLE collection (
 	id_collection SERIAL PRIMARY KEY,
 	name VARCHAR(60) NOT null,
 	release_year VARCHAR(4) not null,
-	id_track INTEGER not null references tracks(id_track),
-	id_album INTEGER not null references album(id_album)
 );
